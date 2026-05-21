@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta viewport="width=device-width, initial-sclae=1.0">
+            <title>Business card</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link rel="icon" href="../Business card/images/free-icon-mortarboard-1321824.png" type="image/png">
+
+            <style>
+                    /* --- CSS Snake and Skidded Styles--- */
+        :root {
+            --bg-dark: #0a0f14;
+            --bg-card: #11161d;
+            --gold-primary: #9f9f9f;
+            --gold-gradient: linear-gradient(135deg, #b4b4b4, #959492, #3f3f3f, #393939, #313131);
+            --text-main: #e0e0e0;
+            --text-muted: #767779;
+            --white: #ffffff;
+            --font-heading: 'Verdana, Geneva, Tahoma, sans-serif';
+            --font-body: 'Montserrat', sans-serif;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 1s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- Утиліти --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-gold {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            cursor: pointer;
+            transition: all 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .section-title {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: rgb(213, 213, 213);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gold-gradient);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 15, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--gold-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold-primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Checkbox Hack для мобільного меню (Без JS) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+        #nav-check {
+            display: none;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://photos.wikimapia.org/p/00/06/70/82/63_full.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Паралакс ефект */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn Up 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* --- Features / Services --- */
+        .services {
+            padding: 100px 0;
+            background-color: var(--bg-dark);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 50px 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--gold-primary);
+        }
+
+        .card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .card p {
+            color: var(--gold-gradient);
+            font-size: 0.95rem;
+        }
+
+        /* --- About Section (Split) --- */
+        .about {
+            padding: 100px 0;
+            background-color: #0d1219;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 2px;
+            box-shadow: 20px 20px 0px rgba(212, 175, 55, 0.1);
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            color: var(--gold-gradient);
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        .stat-item h4 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-item span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        /* --- Gallery / Portfolio --- */
+        .gallery {
+            padding: 100px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay span {
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- Contact / CTA --- */
+        .contact {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(10, 15, 20, 0.9), rgba(10, 15, 20, 0.9)), url('https://picsum.photos/seed/skyscraper/1920/600');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #05080a;
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h5 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: gray;
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+            color: #555;
+            font-size: 0.8rem;
+        }
+        .logo a:hover {
+            background-color:black
+        }
+
+
+        
+            </style>
+        </head>
+        <body>
+            <!-- Header -->
+            <header>
+                <div class="container nav-container">
+                    <div class="logo"><p>NFront</p></div>
+
+                    <!-- Checkbox Hack без (JS) меню -->
+                     <input type="checkbox" id="nav-check">
+
+                     <nav class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="#about">About me</a>
+                        <a href="#gallery">offer</a>
+                        <a href="#footer-col">Contact</a>
+                     </nav>
+                </div>
+            </header>
+
+            <main>
+
+                <!-- Home screen (Hero) -->
+                 <section id="hero" class="hero">
+                    <div class="container herp-content">
+                        <h1 class="text-gold">Nagatskiy Stanislav Oleksiyovych</h1>
+                        <p>I'm a beginner front-end developer.</p>
+                        <a href="#about" class="btn">Find out more</a>
+                    </div>
+                 </section>
+
+                 <!-- About me -->
+                  <section class="about" id="about">
+                    <div class="container">
+                        <div class="split-layout">
+                            <div class="about-image">
+                                <!-- My photo -->
+                                 <img src="../Business card/images/How to Study Smarter, Not Harder.jpg" alt="MuPhoto">
+                            </div>
+                            <div class="about-text">
+                                <h2 class="text-gold">Hello!</h2>
+                                <p>My name is Stanislav Alekseevich Nagatsky. I study at the Pavlograd Professional College of the Dnipro National Technical University and am a junior front-end developer. On this website, you can learn about me and what I have to offer.</p>
+                            
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <h4>18</h4>
+                                        <span>Years</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <h4>Junior</h4>
+                                        <span>Classification</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </section>
+
+                  <!-- Galerry (Visual part) -->
+                   <section id="gallery" class="gallery">
+                        <div class="container">
+                            <h2 class="section-title">A clean frontend for quick and easy editing.</h2>
+
+                            <div class="gallery-grid">
+                                <div class="gallery-item">
+                                    <img src="../Business card/images/HTML.jpg" alt="Html">
+                                    <div class="overlay"><span>HTML</span></div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="../Business card/images/CSS.jpg" alt="Css">
+                                    <div class="overlay"><span>CSS</span></div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="../Business card/images/MINIMALISTIC.jpg" alt="Minimalism">
+                                    <div class="overlay"><span>Minimalism</span></div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="../Business card/images/MODERN.jpg" alt="Modern">
+                                    <div class="overlay"><span>Modern</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+            </main>        
+                    
+            <!-- Basement -->
+             <footer>
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-col">
+                            <div class="logo">NFront<span>.</span></div>
+                            <p style="color: #666; margin-top: 10px; max-width: 250px; font-size: 0.85rem;">
+                                For me, frontend is not just a code, but a way to create interaction between people and the site in a way that is comfortable and welcoming in every detail.
+                            </p>
+                        </div>
+                        <div class="footer-col" id="footer-col">
+                            <h5>Additional information</h5>
+                            <ul>
+                                <li><a href="#footer-col">Contact - +*** (***) *** ***</a></li>
+                                <li><a href="#footer-col">Telegram - *********</a></li>
+                                <li><a href="#footer-col">Email - ************************</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2026 Nagatskyi Stanislav Oleksiyovich
+                    </div>
+                </div>
+             </footer>
+        </body>
+    </html>
